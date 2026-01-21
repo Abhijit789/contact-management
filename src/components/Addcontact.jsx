@@ -5,6 +5,7 @@ import { buttonLabels, componentHeadings } from '../ui-constants/constant'
 import { ContactService } from '../services/service'
 
 export default function Addcontact() {
+    const navigate=useNavigate()
     const[contact,setContact]=useState({
         name:"",
         photo:"",
@@ -21,14 +22,21 @@ export default function Addcontact() {
             ...prev,
             [name]:value
         }))
+        
 
     }
 
-    async function createContact(){
-        // e.preventDefault()
+    async function createContact(e){
+        e.preventDefault()
+        try{
         let response=await ContactService.createContact(contact);
         let data=await response.data
         console.log("form submitted",data);
+        navigate("/")
+        }catch(error){
+            console.error(error.message)
+        }
+        
         
         
 

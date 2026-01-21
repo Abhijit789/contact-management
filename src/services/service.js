@@ -12,6 +12,11 @@ export class ContactService{
         let dataURL=`${this.BASE_URL}/contacts`
         return axios.post(dataURL,contact)
     }
+    static getContact(contactId){
+        let dataUIRL=`${this.BASE_URL}/contacts/${contactId}`
+        return axios.get(dataUIRL)
+
+    }
 
 
 }

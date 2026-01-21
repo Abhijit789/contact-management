@@ -63,7 +63,7 @@ export default function Contactlist() {
                         <div className="card h-100">
                             <div className="card-body d-flex justify-content-between align-items-center">
                                 <div className="col-4">
-                                    <img src="" className="contact-img" alt="" />
+                                    <img src={contact.photo} className="contact-img" alt="" />
                                 </div>
 
                                 <div className="col-7">
@@ -75,10 +75,10 @@ export default function Contactlist() {
                                 </div>
 
                                 <div className="col-1 d-flex flex-column align-items-center justify-content-center">
-                                    <Link to={`/edit/${1}`} className="btn btn-primary my-1 ms-2">
+                                    <Link to={`/edit/${contact.id}`} className="btn btn-primary my-1 ms-2">
                                         <i className="fa fa-pen"></i>
                                     </Link>
-                                    <Link to={`/view/${2}`} className="btn btn-warning my-1 ms-2">
+                                    <Link to={`/view/${contact.id}`} className="btn btn-warning my-1 ms-2">
                                         <i className="fa fa-eye"></i>
                                     </Link>
                                     <button className="btn btn-danger ms-2">
