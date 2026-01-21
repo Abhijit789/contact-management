@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Input from '../ui/Input'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, replace, useNavigate } from 'react-router-dom'
 import { buttonLabels, componentHeadings } from '../ui-constants/constant'
+import { ContactService } from '../services/service'
 
 export default function Addcontact() {
+    const[contact,setContact]=useState({
+        name:"",
+        photo:"",
+        mobile:"",
+        email:"",
+        company:"",
+        designation:"",
+        group:""
+    })
+
+    function handleChange(e){
+        let{name,value}=e.target
+        setContact(prev=>({
+            ...prev,
+            [name]:value
+        }))
+
+    }
+
+    async function createContact(){
+        // e.preventDefault()
+        let response=await ContactService.createContact(contact);
+        let data=await response.data
+        console.log("form submitted",data);
+        
+        
+
+        
+    }
+    console.log(contact,"contacts");
+    
   return (
     <>
       <div className="container p-3">
@@ -12,27 +44,27 @@ export default function Addcontact() {
         </div>
         <div className="row">
             <div className="col-md-4">
-                <form action="">
+                <form action="" onSubmit={(e)=>{createContact(e)}}>
                     <div className="my-2">
-                        <Input type="text" placeholder="Name" id="name" name="name" className="form-control"/>
+                        <Input type="text" placeholder="Name" id="name" name="name" className="form-control" handleChange={handleChange}/>
                     </div>
                     <div className="my-2">
-                        <Input type="text" placeholder="Photo" id="photo" name="photourl" className="form-control"/>
+                        <Input type="text" placeholder="Photo" id="photo" name="photo" className="form-control" handleChange={handleChange}/>
                     </div>
                     <div className="my-2">
-                        <Input type="tel" placeholder="Mobile" id="mobile" name="mobile" className="form-control"/>
+                        <Input type="tel" placeholder="Mobile" id="mobile" name="mobile" className="form-control" handleChange={handleChange}/>
                     </div>
                     <div className="my-2">
-                        <Input type="email" placeholder="M@il" id="email" name="email" className="form-control"/>
+                        <Input type="email" placeholder="M@il" id="email" name="email" className="form-control" handleChange={handleChange}/>
                     </div>
                     <div className="my-2">
-                        <Input type="text" placeholder="Company" id="compoany" name="company" className="form-control"/>
+                        <Input type="text" placeholder="Company" id="compoany" name="company" className="form-control" handleChange={handleChange}/>
                     </div>
                     <div className="my-2">
-                        <Input type="text" placeholder="Designation" id="designation" name="designation" className="form-control"/>
+                        <Input type="text" placeholder="Designation" id="designation" name="designation" className="form-control" handleChange={handleChange}/>
                     </div>
                     <div className="my-2">
-                        <Input type="text" placeholder="Group" id="group" name="group" className="form-control"/>
+                        <Input type="text" placeholder="Group" id="group" name="group" className="form-control" handleChange={handleChange}/>
                     </div>
                     <div className="col d-flex">
                         <div className="my-2">
