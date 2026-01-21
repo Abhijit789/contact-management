@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link} from 'react-router-dom'
 import '../index.css'
 import { ContactService } from '../services/service'
 import Loading from '../ui/Loading'
+import { ContextTheme } from '../contextapi/ContextTheme'
 
 export default function Contactlist() {
     const [contacts, setContacts] = useState([])
     const [loading, setLoading] = useState(false)
+    
+  const{theme,toggleTheme}=useContext(ContextTheme)
+  console.log("theme",theme);
+  
     
 
     async function getAllContacts() {
@@ -42,7 +47,7 @@ export default function Contactlist() {
 
     return (
         <>
-            <div className="container">
+            <div className="container" style={{backgroundColor:`${theme=="light"?"black":"white"}`}}>
                 <div className="row">
                     <section className='contact-list-header p-3'>
                         <div className="col-6">
